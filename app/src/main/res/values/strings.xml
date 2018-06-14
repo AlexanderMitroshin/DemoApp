@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DemoApplication</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="football">Футбол</string>
+    <string name="basketball">Баскетбол</string>
+    <string name="volleyball">Волейбол</string>
+    <string name="hockey">Хоккей</string>
+    <string name="categories">Категории новостей</string>
+    <string name="loading_error">Не удалось загрузить список новостей</string>
+
+</resources>
