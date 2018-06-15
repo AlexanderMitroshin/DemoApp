@@ -8,11 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center" />
-
+    <ImageView
+        android:id="@+id/close"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="end"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_close"/>
 </FrameLayout>

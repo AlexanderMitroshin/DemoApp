@@ -1,6 +1,7 @@
 package com.gggroup.demoapplication.ui.news;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,7 +20,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
 
     @Override
     public NewsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        NewsHolder newsHolder = new NewsHolder(View.inflate(parent.getContext(), R.layout.holder_news, null));
+        NewsHolder newsHolder = new NewsHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.holder_news, parent, false));
         newsHolder.itemView.setOnClickListener(mOnClickListener);
         return newsHolder;
     }
@@ -34,7 +36,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
         return data.size();
     }
 
-    public void updateNews(List<News> news){
+    public void updateNews(List<News> news) {
         this.data = news;
         notifyDataSetChanged();
     }
@@ -43,7 +45,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsHolder> {
         mOnClickListener = onClickListener;
     }
 
-    public News getNews(int pos){
+    public News getNews(int pos) {
         return data.get(pos);
     }
 

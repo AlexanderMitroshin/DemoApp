@@ -7,33 +7,29 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:orientation="vertical"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="4dp"
         app:cardElevation="3dp"
         app:cardUseCompatPadding="true">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <ImageView
+            android:id="@+id/preview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/short_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="12dp" />
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimaryTrans"
+            android:gravity="center_vertical"
+            android:padding="3dp"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
 
     </android.support.v7.widget.CardView>
 </FrameLayout>

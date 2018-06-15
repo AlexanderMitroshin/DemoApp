@@ -2,57 +2,61 @@ package com.gggroup.demoapplication.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.gggroup.demoapplication.R;
-import com.gggroup.demoapplication.tasks.SplashScreenRequestTask;
 import com.gggroup.demoapplication.ui.news.MainActivity;
 
 
 public class SplashActivity extends Activity {
 
     public static final String TAG = "SplashActivity";
-    private WebView mWebView;
-    private View mProgress;
-    private SplashScreenRequestTask mSplashScreenRequestTask;
+    public static final String URL1 = "http://appsforads.net/test301";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        mWebView = findViewById(R.id.webView);
-        WebSettings webSettings = mWebView.getSettings();
+        WebView webView = findViewById(R.id.webView);
+        WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        mProgress = findViewById(R.id.progress);
-        mSplashScreenRequestTask = new SplashScreenRequestTask();
-        mSplashScreenRequestTask.setCallback(new SplashScreenRequestTask.Callback() {
+        webView.setWebViewClient(new WebViewClient() {
             @Override
-            public void onSuccess(String url) {
-                Log.i(TAG,"onSuccess "+url);
-                mProgress.setVisibility(View.GONE);
-                mWebView.loadUrl(url);
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return false;
             }
 
             @Override
-            public void onError() {
-                Log.i(TAG,"onError");
-                mProgress.setVisibility(View.GONE);
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
+            public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    if (request.getUrl().toString().equals(URL1) && errorResponse.getStatusCode() >= 400 && errorResponse.getStatusCode() <= 600) {
+                        openNewsActivity();
+                    }
+                }
             }
         });
-        mSplashScreenRequestTask.execute();
+        webView.loadUrl(URL1);
+        findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewsActivity();
+            }
+        });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mSplashScreenRequestTask.setCallback(null);
+    private void openNewsActivity() {
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
 
