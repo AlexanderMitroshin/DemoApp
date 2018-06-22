@@ -5,23 +5,23 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/football"
+            android:id="@+id/cat1"
             android:icon="@drawable/item1_1"
             android:title="Мои профиль" />
         <item
-            android:id="@+id/basketball"
+            android:id="@+id/cat2"
             android:icon="@drawable/item2"
             android:title="Мой футбол" />
         <item
-            android:id="@+id/volleyball"
+            android:id="@+id/cat3"
             android:icon="@drawable/item3"
             android:title="мой календарь" />
         <item
-            android:id="@+id/hockey"
+            android:id="@+id/cat4"
             android:icon="@drawable/item4"
             android:title="Заметки" />
         <item
-            android:id="@+id/about"
+            android:id="@+id/cat5"
             android:icon="@drawable/item5"
             android:title="О приложении" />
     </group>

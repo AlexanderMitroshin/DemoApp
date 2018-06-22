@@ -8,7 +8,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.gggroup.demoapplication.R;
@@ -59,14 +58,16 @@ public class MainActivity extends AppCompatActivity
         Bundle bundle = new Bundle();
         int id = item.getItemId();
 
-        if (id == R.id.football) {
-            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_FOOTBALL);
-        } else if (id == R.id.basketball) {
-            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_BASKETBALL);
-        } else if (id == R.id.volleyball) {
-            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_VOLLEYBALL);
-        } else if (id == R.id.hockey) {
-            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_HOCKEY);
+        if (id == R.id.cat1) {
+            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_PROFILE);
+        } else if (id == R.id.cat2) {
+            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_TRENI);
+        } else if (id == R.id.cat3) {
+            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_CALENDAR);
+        } else if (id == R.id.cat4) {
+            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_KEEP);
+        } else if (id == R.id.cat5) {
+            bundle.putString(NewsFragment.CATEGORY, ApiConstants.CATEGORY_KEEP);
         }
         fragment.setArguments(bundle);
         getFragmentManager().beginTransaction().replace(R.id.content, fragment).commit();

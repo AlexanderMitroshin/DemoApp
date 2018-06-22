@@ -61,14 +61,19 @@ public class NewsFragment extends Fragment {
         });
         mRecyclerView.setAdapter(mNewsAdapter);
         mSwipeRefreshLayout = root.findViewById(R.id.refresh);
-        mSwipeRefreshLayout.setRefreshing(true);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadData();
-            }
-        });
-        loadData();
+        if(category!=null) {
+            mSwipeRefreshLayout.setRefreshing(true);
+            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    loadData();
+                }
+            });
+            loadData();
+            root.findViewById(R.id.content).setVisibility(View.GONE);
+        }else{
+            root.findViewById(R.id.content).setVisibility(View.VISIBLE);
+        }
         return root;
     }
 
@@ -94,8 +99,10 @@ public class NewsFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mGetNewsTask.setCallback(null);
-        mGetNewsTask.cancel(true);
+        if(mGetNewsTask!=null) {
+            mGetNewsTask.setCallback(null);
+            mGetNewsTask.cancel(true);
+        }
     }
 
     @Override
