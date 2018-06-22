@@ -15,5 +15,6 @@
         android:layout_gravity="end"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:visibility="gone"
         android:src="@drawable/ic_close"/>
 </FrameLayout>

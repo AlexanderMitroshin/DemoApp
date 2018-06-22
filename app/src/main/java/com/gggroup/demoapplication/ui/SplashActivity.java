@@ -17,6 +17,7 @@ import com.gggroup.demoapplication.R;
 import com.gggroup.demoapplication.ui.news.MainActivity;
 
 
+
 public class SplashActivity extends Activity {
 
     public static final String TAG = "SplashActivity";
@@ -26,32 +27,43 @@ public class SplashActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        WebView webView = findViewById(R.id.webView);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return false;
-            }
 
-            @Override
-            public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    if (request.getUrl().toString().equals(URL1) && errorResponse.getStatusCode() >= 400 && errorResponse.getStatusCode() <= 600) {
-                        openNewsActivity();
+
+        if(true){
+            openNewsActivity();
+            finish();
+            return;
+        }
+
+        String locale = getResources().getConfiguration().locale.getCountry();
+        if (locale.equalsIgnoreCase("ru") || locale.equalsIgnoreCase("ua")) {
+            WebView webView = findViewById(R.id.webView);
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    view.loadUrl(url);
+                    return false;
+                }
+
+                @Override
+                public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        if (request.getUrl().toString().equals(URL1) && errorResponse.getStatusCode() >= 400 && errorResponse.getStatusCode() <= 600) {
+                            openNewsActivity();
+                        }
                     }
                 }
-            }
-        });
-        webView.loadUrl(URL1);
-        findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNewsActivity();
-            }
-        });
+            });
+            webView.loadUrl(URL1);
+            findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openNewsActivity();
+                }
+            });
+        }
     }
 
     private void openNewsActivity() {

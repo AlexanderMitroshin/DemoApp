@@ -6,16 +6,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/football"
-            android:title="@string/football" />
+            android:icon="@drawable/item1_1"
+            android:title="Мои профиль" />
         <item
             android:id="@+id/basketball"
-            android:title="@string/basketball" />
+            android:icon="@drawable/item2"
+            android:title="Мой футбол" />
         <item
             android:id="@+id/volleyball"
-            android:title="@string/volleyball" />
+            android:icon="@drawable/item3"
+            android:title="мой календарь" />
         <item
             android:id="@+id/hockey"
-            android:title="@string/hockey" />
+            android:icon="@drawable/item4"
+            android:title="Заметки" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/item5"
+            android:title="О приложении" />
     </group>
 
 </menu>
